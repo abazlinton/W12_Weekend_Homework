@@ -12,15 +12,19 @@ RestCountriesListView.prototype.bindEvents = function () {
 };
 
 RestCountriesListView.prototype.renderRestCountriesDetailViews = function (countries) {
-  countries.forEach((country) => {
-    const countryItem = this.createCountryListItem(country);
+  countries.forEach((country, index) => {
+    const countryItem = this.createCountryListItem(country, index);
     this.container.appendChild(countryItem);
   });
 };
 
-RestCountriesListView.prototype.createCountryListItem = function (country) {
+RestCountriesListView.prototype.createCountryListItem = function (country, index) {
   const restCountriesDetailView = new RestCountriesDetailView();
-  const countryDetail = restCountriesDetailView.createCountryDetail(country);
+  const countryDetail = restCountriesDetailView.createRestCountriesDetail(country, index);
+  countryDetail.addEventListener('click', (evt) => {
+    console.log(evt.target.id)
+  })
+  // debugger
   return countryDetail;
 };
 
